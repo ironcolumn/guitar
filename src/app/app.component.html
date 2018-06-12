@@ -1,20 +1,61 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
-</div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://github.com/angular/angular-cli/wiki">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
-
+<div style = "text-align:center" >
+  <h1 >
+    吉他查询系统 </h1 >
+</div >
+<p-toolbar >
+  <form [formGroup] = "searchForm" novalidate >
+    <div class = "ui-grid-row" >
+      <div class = "form-group ui-g-3" >
+        <label >前板：</label >
+        <p-dropdown [options] = "woods" appendTo = "body" formControlName = "topWood" placeholder = "请选择前板" ></p-dropdown >
+      </div >
+      <div class = "form-group ui-g-3" >
+        <label >背板：</label >
+        <p-dropdown [options] = "woods" appendTo = "body" formControlName = "backWood" placeholder = "请选择背板" ></p-dropdown >
+      </div >
+      <div class = "form-group ui-g-3" >
+        <label >产地：</label >
+        <p-dropdown [options] = "builders" appendTo = "body" formControlName = "builder" placeholder = "请选择产地" ></p-dropdown >
+      </div >
+      <div class = "form-group ui-g-3" >
+        <label >类型：</label >
+        <p-dropdown [options] = "types" appendTo = "body" formControlName = "type" placeholder = "请选择类型" ></p-dropdown >
+      </div >
+    </div >
+    <div class = "ui-grid-row" >
+      <div class = "form-group ui-g-4" >
+        <label >编号：</label >
+        <input type = "text" pInputText placeholder = "请输入编号" formControlName = "serialNumber" >
+      </div >
+      <!--<div class = "form-group ui-g-4" >-->
+      <!--<label >价格：</label >-->
+      <!--<input type = "text" pInputText placeholder = "请输入价格" formControlName = "floorPrice" >-->
+      <!--<label >-</label >-->
+      <!--<input type = "text" pInputText placeholder = "请输入价格" formControlName = "cellingPrice" >-->
+      <!--</div >-->
+    </div >
+  </form >
+</p-toolbar >
+<p-table [value] = "dataSet" [paginator] = "true" [rows] = "20" >
+  <ng-template pTemplate = "header" >
+    <tr >
+      <th >编号</th >
+      <th >价格</th >
+      <th >产地</th >
+      <th >类型</th >
+      <th >前板</th >
+      <th >背板</th >
+    </tr >
+  </ng-template >
+  <ng-template pTemplate = "body" let-guitar >
+    <tr >
+      <td >{{guitar.serialNumber}}</td >
+      <td >{{guitar.price}}</td >
+      <td >{{guitar.builder}}</td >
+      <td >{{guitar.type}}</td >
+      <td >{{guitar.topWood}}</td >
+      <td >{{guitar.backWood}}</td >
+    </tr >
+  </ng-template >
+</p-table >
